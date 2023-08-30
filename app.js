@@ -11,7 +11,7 @@ const conectDB = require("./db/connect");
 const authentcateUser = require("./middleware/authentication");
 //routers
 const authRouter = require("./routes/auth");
-const admin_login_router=require("./routes/admin");
+const admin_router = require("./routes/admin");
 
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
@@ -23,7 +23,8 @@ app.get("/", (req, res) => {
 });
 // routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/admin",admin_login_router);
+app.use("/api/v1/admin", admin_router);
+// app.use("/api/v1/admin/")
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
