@@ -41,7 +41,7 @@ const login = async (req, res) => {
 };
 
 const addLandScapeDesign = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const addDesin = await LandscapeDesign.create(req.body);
 
   res.status(StatusCodes.CREATED).json({ addDesin });
