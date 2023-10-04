@@ -3,9 +3,9 @@ const Admin = require("../models/Admin");
 const User = require("../models/User");
 const LandscapeDesign = require("../models/LndscapeDesigns");
 const Products = require("../models/Products");
-const Services=require("../models/Services")
-const Project=require("../models/Projects")
-const Plant=require("../models/Plants")
+const Services = require("../models/Services");
+const Project = require("../models/Projects");
+const Plant = require("../models/Plants");
 
 const jwt = require("jsonwebtoken");
 
@@ -61,16 +61,27 @@ const addGardenServices = async (req, res) => {
   const service = await Services.create(req.body);
   res.status(StatusCodes.CREATED).json({ service });
 };
-const addGardenProjects=async (req,res)=>{
-  const project=await Project.create(req.body);
+const addGardenProjects = async (req, res) => {
+  const project = await Project.create(req.body);
   res.status(StatusCodes.CREATED).json({ project });
-  
-}
-const addGardenPlants=async(req,res)=>{
-  const plant=await Plant.create(req.body);
+};
+const addGardenPlants = async (req, res) => {
+  const plant = await Plant.create(req.body);
   res.status(StatusCodes.CREATED).json({ plant });
-}
+};
 
+const getAllServices = async (req, res) => {
+  const service = await Services.find({});
+  res.status(StatusCodes.OK).json({ service, count: service.length });
+};
+const getAllPlants = async (req, res) => {
+  const plant = await Plant.find({});
+  res.status(StatusCodes.OK).json({ plant, count: plant.length });
+};
+const getAllProducts = async (req, res) => {
+  const product = await Products.find({});
+  res.status(StatusCodes.OK).json({ product, count: product.length });
+};
 module.exports = {
   login,
   getAllUsers,
@@ -78,5 +89,8 @@ module.exports = {
   addProducts,
   addGardenServices,
   addGardenProjects,
-  addGardenPlants
+  addGardenPlants,
+  getAllServices,
+  getAllPlants,
+  getAllProducts,
 };

@@ -8,6 +8,9 @@ const {
   addGardenServices,
   addGardenProjects,
   addGardenPlants,
+  getAllProducts,
+  getAllServices,
+  getAllPlants,
 } = require("../controllers/admin");
 const authentcateUser = require("../middleware/authentication");
 const auth = require("../middleware/authentication");
@@ -15,9 +18,19 @@ const auth = require("../middleware/authentication");
 router.post("/login", login);
 router.route("/users").get(authentcateUser, getAllUsers);
 router.route("/landscape-designs").post(authentcateUser, addLandScapeDesign);
-router.route("/add-products").post(authentcateUser, addProducts);
-router.route("/services").post(authentcateUser, addGardenServices);
+router
+  .route("/add-products")
+  .post(authentcateUser, addProducts)
+  .get(authentcateUser, getAllProducts);
+
+router
+  .route("/services")
+  .post(authentcateUser, addGardenServices)
+  .get(authentcateUser, getAllServices);
 router.route("/projects").post(authentcateUser, addGardenProjects);
-router.route("/plants").post(authentcateUser, addGardenPlants);
+router
+  .route("/plants")
+  .post(authentcateUser, addGardenPlants)
+  .get(authentcateUser, getAllPlants);
 
 module.exports = router;
