@@ -11,6 +11,8 @@ const {
   getAllProducts,
   getAllServices,
   getAllPlants,
+  getContacts,
+  getServiceBooking,
 } = require("../controllers/admin");
 const authentcateUser = require("../middleware/authentication");
 const auth = require("../middleware/authentication");
@@ -32,5 +34,6 @@ router
   .route("/plants")
   .post(authentcateUser, addGardenPlants)
   .get(authentcateUser, getAllPlants);
-
+router.route("/contact").get(authentcateUser, getContacts);
+router.route("/service-booking").get(authentcateUser, getServiceBooking);
 module.exports = router;

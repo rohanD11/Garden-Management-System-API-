@@ -6,6 +6,8 @@ const Products = require("../models/Products");
 const Services = require("../models/Services");
 const Project = require("../models/Projects");
 const Plant = require("../models/Plants");
+const Contact = require("../models/Contact");
+const ServiceBooking = require("../models/Client_service_Booking");
 
 const jwt = require("jsonwebtoken");
 
@@ -82,6 +84,15 @@ const getAllProducts = async (req, res) => {
   const product = await Products.find({});
   res.status(StatusCodes.OK).json({ product, count: product.length });
 };
+
+const getContacts = async (req, res) => {
+  const contact = await Contact.find({});
+  res.status(StatusCodes.OK).json({ contact, count: contact.length });
+};
+const getServiceBooking = async (req, res) => {
+  const service = await ServiceBooking.find({});
+  res.status(StatusCodes.OK).json({ service, count: service.length });
+};
 module.exports = {
   login,
   getAllUsers,
@@ -93,4 +104,6 @@ module.exports = {
   getAllServices,
   getAllPlants,
   getAllProducts,
+  getContacts,
+  getServiceBooking,
 };
